@@ -30,7 +30,7 @@
                     Loading..
                 </div>
                 <div class="search-results" v-else>
-                    Found {{ items.length }} results for search term {{ lastSearch }}.
+                    Found {{ results.length }} results for search term {{ lastSearch }}.
                 </div>
                 <div class="product" v-for="(item, index) in items">
                     <div class="product-image">
@@ -42,24 +42,29 @@
                         <button class="btn add-to-cart" v-on:click="addItem(index)">Add to cart</button>
                     </div>
                 </div>
+                <div id="product-list-bottom">
+                    <div v-if="noMoreItems">
+                        No more items.
+                    </div>
+                </div>
             </div>
             <div class="cart">
                 <h2>Shopping Cart</h2>
-                <ul>
-                    <li class="cart-item" v-for="item in cart">
+                <transition-group name="fade" tag="ul">
+                    <li class="cart-item" v-for="item in cart" v-bind:key="item.id">
                         <div>{{ item.title }}</div>
                         <span class="item-qty">{{ item.price | currency }} x {{ item.quantity }}</span>
                         <button class="btn" v-on:click="inc(item)">+</button>
                         <button class="btn" v-on:click="dec(item)">-</button>
                     </li>
-                </ul>
-                <div>
+                </transition-group>
+                <transition name="fade">
                     <div v-if="cart.length">
                         <div>Total: {{ total | currency }}</div>
                     </div>
-                    <div class="empty-cart" v-else>
-                        No items in the cart.
-                    </div>
+                </transition>
+                <div class="empty-cart" v-if="!cart.length">
+                    No items in the cart.
                 </div>
             </div>
         </div>
@@ -69,6 +74,7 @@
     <script src="reload/reload.js"></script>
     <script src="node_modules/vue/dist/vue.js"></script>
     <script src="node_modules/vue-resource/dist/vue-resource.js"></script>
+    <script src="node_modules/scrollmonitor/scrollMonitor.js"></script>
     <script src="public/script.js"></script>
 </body>
 
