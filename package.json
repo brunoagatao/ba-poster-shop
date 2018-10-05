@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "set NODE_ENV=development && nodemon ./index.js --ignore node_modules/ -e js,html,css",
-    "start": "set NODE_ENV=production && node index.js",
-    "heroku-postbuild": "npm run start"
+    "start": "set NODE_ENV=production && node index.js"
   },
   "author": "Bruno Agatao",
   "repository": {
