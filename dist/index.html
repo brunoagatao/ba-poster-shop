@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <div id="app">
+    <div id="app" v-cloak>
         <div class="header">
             <h1>Vue.js Poster Store</h1>
             <form class="searchbar" v-on:submit.prevent="onSubmit">
@@ -71,9 +71,9 @@
     </div>
 
     <!-- Scripts -->
-    <script src="reload/reload.js"></script>
-    <script src="node_modules/vue/dist/vue.js"></script>
-    <script src="node_modules/vue-resource/dist/vue-resource.js"></script>
+    <!-- <script src="reload/reload.js"></script> -->
+    <script src="node_modules/vue/dist/vue.min.js"></script>
+    <script src="node_modules/vue-resource/dist/vue-resource.min.js"></script>
     <script src="node_modules/scrollmonitor/scrollMonitor.js"></script>
     <script src="public/script.js"></script>
 </body>

@@ -1,27 +1,19 @@
 {
-  "name": "vuejs-poster-shop",
-  "version": "1.1.0",
-  "description": "Ultimate Vue.js Developers Course - Vue.js Poster Shop",
+  "name": "ba-poster-shop",
+  "version": "1.0.0",
+  "description": "Poster Shop web application built with Vue.js",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./index.js --ignore node_modules/ -e js,html,css"
+    "dev": "nodemon ./index.js --ignore node_modules/ -e js,html,css",
+    "start": "node index.js",
+    "heroku-postbuild": "npm run start"
   },
-  "author": "Anthony Gore <anthony@vuejsdevelopers.com>",
+  "author": "Bruno Agatao",
   "repository": {
     "type": "git",
-    "url": "https://github.com/vuejsdevelopers/vuejs-poster-shop"
+    "url": "https://github.com/brunoagatao/ba-poster-shop"
   },
-  "engines": {
-    "node": ">=6.4"
-  },
-  "homepage": "http://vuejs-poster-shop.vuejsdevelopers.com/",
-  "keywords": [
-    "vue",
-    "vue.js",
-    "course",
-    "node"
-  ],
-  "license": "UNLICENSED",
+  "license": "MIT",
   "dependencies": {
     "axios": "^0.15.2",
     "body-parser": "^1.18.2",

@@ -1,7 +1,7 @@
 const PRICE = 9.99;
 const LOAD_NUM = 10;
 
-new Vue({
+const app = new Vue({
   el: '#app',
   data: {
     total: 0,
@@ -15,8 +15,9 @@ new Vue({
   },
   methods: {
     onSubmit: function () {
-      this.items = [];
+      if (!this.newSearch) return;
 
+      this.items = [];
       this.loading = true;
       this.$http
         .get('/search/'.concat(this.newSearch))
