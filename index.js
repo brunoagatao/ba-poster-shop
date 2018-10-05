@@ -6,8 +6,11 @@ const axios = require('axios');
 const querystring = require('querystring');
 const reload = require('reload');
 
-require('dotenv').config();
 const app = express();
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+  reload(app);
+}
 
 app.use(bodyParser.json());
 app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
@@ -34,10 +37,6 @@ app.get('/search/:query', function (req, res) {
 });
 
 const server = http.createServer(app);
-if (process.env.NODE_ENV !== 'production') {
-  reload(app);
-}
-
 server.listen(process.env.PORT, function () {
   console.log('Listening on port '.concat(process.env.PORT));
 });
