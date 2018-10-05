@@ -20,14 +20,27 @@
         <div class="header">
             <h1>Vue.js Poster Store</h1>
             <form class="searchbar" v-on:submit.prevent="onSubmit">
+                <input placeholder="Search for posters" v-model="newSearch">
                 <input type="submit" value="Search" class="btn">
             </form>
         </div>
         <div class="main">
             <div class="products">
+                <div v-if="loading">
+                    Loading..
+                </div>
+                <div class="search-results" v-else>
+                    Found {{ items.length }} results for search term {{ lastSearch }}.
+                </div>
                 <div class="product" v-for="(item, index) in items">
-                    <h4 class="product-title">{{ item.title }}</h4>
-                    <button class="btn add-to-cart" v-on:click="addItem(index)">Add to cart</button>
+                    <div class="product-image">
+                        <img v-bind:src="item.link">
+                    </div>
+                    <div>
+                        <h4 class="product-title">{{ item.title }}</h4>
+                        <p>Price: <strong>{{ price | currency }}</strong></p>
+                        <button class="btn add-to-cart" v-on:click="addItem(index)">Add to cart</button>
+                    </div>
                 </div>
             </div>
             <div class="cart">
@@ -54,7 +67,8 @@
 
     <!-- Scripts -->
     <script src="reload/reload.js"></script>
-    <script src="node_modules/vue/dist/vue.js"> </script>
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script src="node_modules/vue-resource/dist/vue-resource.js"></script>
     <script src="public/script.js"></script>
 </body>
 

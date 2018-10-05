@@ -30,8 +30,7 @@ app.get('/search/:query', function (req, res) {
     })
     .catch(function (error) {
       console.log(error);
-    })
-    ;
+    });
 });
 
 const server = http.createServer(app);
