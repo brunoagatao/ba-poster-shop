@@ -7,9 +7,10 @@ const querystring = require('querystring');
 const reload = require('reload');
 
 const app = express();
-if (process.env.NODE_ENV !== 'production') {
+
+if (!process.env.IMGUR_CLIENT_ID) {
   require('dotenv').config();
-  reload(app);
+  if (process.env.NODE_ENV === 'development') reload(app);
 }
 
 app.use(bodyParser.json());
@@ -36,7 +37,9 @@ app.get('/search/:query', function (req, res) {
     });
 });
 
+const port = process.env.PORT || 3000;
 const server = http.createServer(app);
-server.listen(process.env.PORT, function () {
-  console.log('Listening on port '.concat(process.env.PORT));
+
+server.listen(port, function () {
+  console.log('Listening on port '.concat(port));
 });
