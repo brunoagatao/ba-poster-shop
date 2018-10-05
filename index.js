@@ -4,13 +4,15 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const axios = require('axios');
 const querystring = require('querystring');
-const reload = require('reload');
 
 const app = express();
 
 if (!process.env.IMGUR_CLIENT_ID) {
   require('dotenv').config();
-  if (process.env.NODE_ENV === 'development') reload(app);
+  if (process.env.NODE_ENV === 'development') {
+    const reload = require('reload');
+    reload(app);
+  }
 }
 
 app.use(bodyParser.json());
